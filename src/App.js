@@ -22,7 +22,7 @@ class App extends Component {
         value_two: (this.state.value_two +'.'+ event.target.value)
       })
     }
-    else if(this.state.value_one !=='' && this.state.toggle_decimal_one !==false && this.state.operator !==''){
+    else if(this.state.value_one !=='' && this.state.operator !==''){
       this.setState({
         value_two: event.target.value,
       })
@@ -57,30 +57,33 @@ class App extends Component {
   }
 
   calculate = (event) => {
-    if(this.state.operator === '+'){
-      this.setState({
-        calc_total: (Number(this.state.value_one) + Number(this.state.value_two))
-      })
-      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    }
-    else if(this.state.operator === '-'){
-      this.setState({
-        calc_total: (Number(this.state.value_one) - Number(this.state.value_two))
-      })
-      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    }
-    else if(this.state.operator === '*'){
-      this.setState({
-        calc_total: (Number(this.state.value_one) * Number(this.state.value_two))
-      })
-      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    }
-    else if(this.state.operator === '/'){
-      this.setState({
-        calc_total: (Number(this.state.value_one) / Number(this.state.value_two))
-      })
-      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    }
+    this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state})
+    // if(this.state.operator === '+'){
+    //   this.setState({
+    //     calc_total: (Number(this.state.value_one) + Number(this.state.value_two))
+    //   })
+    //   if(this.state.calc_total){
+    //     this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state})
+    //   }
+    // }
+    // else if(this.state.operator === '-'){
+    //   this.setState({
+    //     calc_total: (Number(this.state.value_one) - Number(this.state.value_two))
+    //   })
+    //   this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
+    // }
+    // else if(this.state.operator === '*'){
+    //   this.setState({
+    //     calc_total: (Number(this.state.value_one) * Number(this.state.value_two))
+    //   })
+    //   this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
+    // }
+    // else if(this.state.operator === '/'){
+    //   this.setState({
+    //     calc_total: (Number(this.state.value_one) / Number(this.state.value_two))
+    //   })
+    //   this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
+    // }
   }
 
   displayInput = () => {

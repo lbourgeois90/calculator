@@ -21,6 +21,7 @@ function* watcherSaga() {
 
 function* postCalculationsSaga(action){
     console.log('in postCalculationsSaga');
+    console.log('action.payload is:', action)
     try{
         yield axios.post('/calculations', action.payload);
         yield put({type: 'GET_CALCULATIONS'});
