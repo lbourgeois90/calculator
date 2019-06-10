@@ -22,27 +22,31 @@
 }
 
 .tabletd{
-  font-size: 8px;
+  font-size: 18px;
 }
 
 h4{
   margin: 0;
-  font-size: 12px;
+  font-size: 24px;
 }
 
 p{
-  font-size: 4px;
+  font-size: 12px;
 }
 
 .calc-row button{
-  width: 25px;
+  width: 50px;
+  height: 50px;
   border: 1px black solid;
   border-right: none;
+  border-bottom: none;
 }
 
 .calc-row button:last-child{
-  width: 25px;
+  width: 50px;
+  height: 50px;
   border: 1px black solid;
+  border-bottom: none;
 }
 
 .calc-row button:focus{
@@ -51,7 +55,8 @@ p{
 }
 
 .clear-row button{
-  width: 100px;
+  width: 200px;
+  height: 50px;
   border: 1px black solid;
 }
 
@@ -63,7 +68,10 @@ p{
 
 .input-row{
   border: 1px black solid;
-  width: 100px;
+  width: 200px;
+  height: 50px;
   margin: 0 auto;
   box-sizing: border-box;
+  border-bottom: none;
+  line-height: 50px;
 }
