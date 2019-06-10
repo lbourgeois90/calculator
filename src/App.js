@@ -14,6 +14,11 @@ class App extends Component {
     toggle_decimal_two: false,
   }
 
+  componentDidMount () {
+    this.props.dispatch({type:'GET_CALCULATIONS'})
+    let setIntervalGetCalculations = setInterval(this.getCalculations, 1000);
+  }
+
   inputValue = (event) => {
     console.log(event.target.value);
     if(this.state.value_one !=='' && this.state.operator !=='' && this.state.value_two !==''  && this.state.toggle_decimal_two !==false){
@@ -66,34 +71,36 @@ class App extends Component {
     })
   }
 
-  calculate = (event) => {
-    this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state})
-    // if(this.state.operator === '+'){
-    //   this.setState({
-    //     calc_total: (Number(this.state.value_one) + Number(this.state.value_two))
-    //   })
-    //   if(this.state.calc_total){
-    //     this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state})
-    //   }
-    // }
-    // else if(this.state.operator === '-'){
-    //   this.setState({
-    //     calc_total: (Number(this.state.value_one) - Number(this.state.value_two))
-    //   })
-    //   this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    // }
-    // else if(this.state.operator === '*'){
-    //   this.setState({
-    //     calc_total: (Number(this.state.value_one) * Number(this.state.value_two))
-    //   })
-    //   this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    // }
-    // else if(this.state.operator === '/'){
-    //   this.setState({
-    //     calc_total: (Number(this.state.value_one) / Number(this.state.value_two))
-    //   })
-    //   this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
-    // }
+  calculate = (event) =>  {
+    let result = '';
+    if(this.state.operator === '+'){
+      result= (Number(this.state.value_one) + Number(this.state.value_two))
+      this.setState({
+        calc_total: result,
+      })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: {state: this.state, calculation: result }})
+    }
+    else if(this.state.operator === '-'){
+      result= (Number(this.state.value_one) - Number(this.state.value_two))
+      this.setState({
+        calc_total: result
+      })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: {state: this.state, calculation: result }})
+    }
+    else if(this.state.operator === '*'){
+      result= (Number(this.state.value_one) * Number(this.state.value_two))
+      this.setState({
+        calc_total: result
+      })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: {state: this.state, calculation: result }})
+    }
+    else if(this.state.operator === '/'){
+      result= (Number(this.state.value_one) / Number(this.state.value_two))
+      this.setState({
+        calc_total: result
+      })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: {state: this.state, calculation: result }})
+    }
   }
 
   displayInput = () => {
@@ -102,9 +109,14 @@ class App extends Component {
         <div>{this.state.calc_total}</div>
       )
     }
-    else{
+    else if(this.state.value_one !== ''){
       return(
         <div>{this.state.value_one} {this.state.operator} {this.state.value_two}</div>
+      )
+    }
+    else{
+      return(
+        <div>0</div>
       )
     }
   }

@@ -17,22 +17,22 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log('in SERVER POST');
-    console.log('Client Calculations', req.body);
-    let calc_total = null;
-    if(req.body.operator === '+'){
-        calc_total = (Number(req.body.value_one) + Number(req.body.value_two))
-    }
-    else if(req.body.operator === '-'){
-        calc_total = (Number(req.body.value_one) - Number(req.body.value_two))
-    }
-    else if(req.body.operator === '*'){
-        calc_total = (Number(req.body.value_one) * Number(req.body.value_two))
-    }
-    else if(req.body.operator === '/'){
-        calc_total = (Number(req.body.value_one) / Number(req.body.value_two))
-    }
+    console.log('Client Calculations', req.body)
+    // let calc_total = null;
+    // if(req.body.operator === '+'){
+    //     calc_total = (Number(req.body.value_one) + Number(req.body.value_two))
+    // }
+    // else if(req.body.operator === '-'){
+    //     calc_total = (Number(req.body.value_one) - Number(req.body.value_two))
+    // }
+    // else if(req.body.operator === '*'){
+    //     calc_total = (Number(req.body.value_one) * Number(req.body.value_two))
+    // }
+    // else if(req.body.operator === '/'){
+    //     calc_total = (Number(req.body.value_one) / Number(req.body.value_two))
+    // }
     const sqlText= `INSERT INTO "calculator" ("calc_total", "value_one", "value_two", "operator") VALUES ($1, $2, $3, $4)`;
-    pool.query( sqlText, [calc_total, req.body.value_one, req.body.value_two, req.body.operator])
+    pool.query( sqlText, [req.body.calculation, req.body.state.value_one, req.body.state.value_two, req.body.state.operator])
     .then((result) => {
         res.sendStatus(201)
     })
