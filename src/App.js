@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -16,7 +15,12 @@ class App extends Component {
 
   componentDidMount () {
     this.props.dispatch({type:'GET_CALCULATIONS'})
-    let setIntervalGetCalculations = setInterval(this.getCalculations, 1000);
+    let setIntervalGetCalculations = setInterval(this.getCalculations, 5000);
+    this.setState({ setIntervalGetCalculations: setIntervalGetCalculations })
+  }
+
+  getCalculations = () =>{
+    this.props.dispatch({type:'GET_CALCULATIONS'})
   }
 
   inputValue = (event) => {
@@ -171,9 +175,29 @@ class App extends Component {
             <button onClick={this.clearValue}>Clear</button>
           </div>
         </div>
+
+        <hr/>
+        <div>
+          <h4>Calculations</h4>
+          <table className='table'>
+            <tbody>
+              {this.props.reduxState.calculationsReducer.map( (calculations) => 
+                <tr key={calculations.id} className='tableRow'>
+                  <td className='tabletd'>{calculations.value_one} {calculations.operator} {calculations.value_two} = {calculations.calc_total}</td>
+                </tr> 
+              )}
+            </tbody>
+          </table>
+         
+        </div>
       </div>
     );
   }
 }
 
-export default connect()(App);
+
+const mapReduxStateToProps = (reduxState) => ({
+  reduxState,
+});
+
+export default connect( mapReduxStateToProps )(App);
