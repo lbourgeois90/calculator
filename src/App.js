@@ -66,16 +66,19 @@ class App extends Component {
       this.setState({
         calc_total: (Number(this.state.value_one) - Number(this.state.value_two))
       })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
     }
     else if(this.state.operator === '*'){
       this.setState({
         calc_total: (Number(this.state.value_one) * Number(this.state.value_two))
       })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
     }
     else if(this.state.operator === '/'){
       this.setState({
         calc_total: (Number(this.state.value_one) / Number(this.state.value_two))
       })
+      this.props.dispatch({type: 'POST_CALCULATIONS', payload: this.state })
     }
   }
 
