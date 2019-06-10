@@ -1,4 +1,5 @@
 ## Calculator
+Calculator that allows user to enter in two numbers to be computed based on selected operator.
 
 ## Deployed
 https://thawing-hollows-10940.herokuapp.com/
