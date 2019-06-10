@@ -19,9 +19,9 @@ function* watcherSaga() {
 }
 
 function* postCalculationsSaga(action){
-    console.log('in addProjectsSaga');
+    console.log('in postCalculationsSaga');
     try{
-        yield axios.post('/calculate', action.payload);
+        yield axios.post('/calculations', action.payload);
         yield put({type: 'GET_CALCULATIONS'});
     }
     catch (error) {
@@ -31,11 +31,11 @@ function* postCalculationsSaga(action){
 }
 
 function* getCalculationsSaga(action) {
-    console.log('in projectListSaga')
+    console.log('in getCalculationsSaga')
     try{
-        const response = yield axios.get('/projects');
+        const response = yield axios.get('/calculations');
         console.log('Response is', response);
-        yield put({type:'SET_PROJECTS', payload: response.data});
+        yield put({type:'SET_CALCULATIONS', payload: response.data});
     }
     catch (error) {
         console.log('ERROR IN GET', error);
