@@ -39,7 +39,7 @@ function* getCalculationsSaga(action) {
     }
     catch (error) {
         console.log('ERROR IN GET', error);
-        alert(`Sorry! Was unable to get projects. Try again later.`);
+        alert(`Sorry! Was unable to get calculations. Try again later.`);
     }
 }
 

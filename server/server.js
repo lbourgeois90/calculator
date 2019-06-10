@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
-const calculationsRotuer = require('./routes/calculations.router')
+const calculationsRouter = require('./routes/calculations.router')
 
 
 app.use(bodyParser.json()); 
 app.use(express.static('build'));
 
-app.use('/calculations', calculationsRotuer);
+app.use('/calculations', calculationsRouter);
 
 
 app.listen(port, function () {
