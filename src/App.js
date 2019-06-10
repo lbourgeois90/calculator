@@ -47,14 +47,27 @@ class App extends Component {
       })
     }
   }
+
+  displayInput = () => {
+    if(this.state.calc_total !== ''){
+      return (
+        <div>{this.state.calc_total}</div>
+      )
+    }
+    else{
+      return(
+        <div>{this.state.value_one} {this.state.operator} {this.state.value_two}</div>
+      )
+    }
+  }
   
   render() {
     console.log('value one is:', this.state.value_one, 'value two is:', this.state.value_two, 'total is:', this.state.calc_total)
     return (
       <div className="App">
         <div className="calculator-wrapper">
-        <div className='calc-row'>
-            <div>{this.state.value_one} {this.state.operator} {this.state.value_two}</div>
+          <div className='calc-row'>
+            {this.displayInput()}
           </div>
           <div className='calc-row'>
             <button value={7} onClick={this.inputValue}>7</button>
