@@ -177,6 +177,7 @@ class App extends Component {
         </div>
         <div className='calculationhistory'>
           <h4>User Calculations</h4>
+          <p>Shows last 10 user calculations</p>
 
           <table className='table'>
             <tbody>

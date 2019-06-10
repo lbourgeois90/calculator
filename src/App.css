@@ -3,7 +3,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr ;
   grid-template-areas:
-  "calculation history"
+  "calculation history";
+  margin-top: 25px;
 }
 
 .calculator-wrapper{
@@ -26,6 +27,11 @@
 
 h4{
   margin: 0;
+  font-size: 12px;
+}
+
+p{
+  font-size: 4px;
 }
 
 .calc-row button{
