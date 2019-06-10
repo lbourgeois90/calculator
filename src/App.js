@@ -178,7 +178,7 @@ class App extends Component {
 
         <hr/>
         <div>
-          <h4>Calculations</h4>
+          <h4>User Calculations</h4>
           <table className='table'>
             <tbody>
               {this.props.reduxState.calculationsReducer.map( (calculations) => 
