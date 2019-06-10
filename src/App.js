@@ -11,7 +11,7 @@ class App extends Component {
     calc_total: '',
   }
 
-  inputValue= (event) => {
+  inputValue = (event) => {
     console.log(event.target.value);
     if(this.state.value_one !==''){
       this.setState({
@@ -24,7 +24,15 @@ class App extends Component {
       })
     }
   }
-  
+
+  clearValue = (event) => {
+    this.setState({
+      value_one: '',
+      value_two: '',
+      operator: '',
+      calc_total: '',
+    })
+  }
   
   render() {
     console.log('value one is:', this.state.value_one, 'value two is:', this.state.value_two)
@@ -59,7 +67,7 @@ class App extends Component {
             <button>-</button> 
           </div>
           <div className='calc-row'>
-            <button>Clear</button>
+            <button onClick={this.clearValue}>Clear</button>
           </div>
         </div>
       </div>
