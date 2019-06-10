@@ -9,13 +9,26 @@ class App extends Component {
     value_two: '',
     operator: '',
     calc_total: '',
+    toggle_decimal_one: false,
+    toggle_decimal_two: false,
   }
 
   inputValue = (event) => {
     console.log(event.target.value);
-    if(this.state.value_one !==''){
+    if(this.state.value_one !=='' && this.state.operator !=='' && this.state.value_two !==''  && this.state.toggle_decimal_two !==false){
+      console.log('in else if decimal two');
+      this.setState({
+        value_two: (this.state.value_two +'.'+ event.target.value)
+      })
+    }
+    else if(this.state.value_one !=='' && this.state.toggle_decimal_one !==false && this.state.operator !==''){
       this.setState({
         value_two: event.target.value,
+      })
+    }
+    else if (this.state.value_one !=='' && this.state.toggle_decimal_one !== false){
+      this.setState({
+        value_one: (this.state.value_one +'.'+ event.target.value)
       })
     }
     else{
@@ -37,6 +50,8 @@ class App extends Component {
       value_two: '',
       operator: '',
       calc_total: '',
+      toggle_decimal_one: false,
+      toggle_decimal_two: false,
     })
   }
 
@@ -44,6 +59,22 @@ class App extends Component {
     if(this.state.operator === '+'){
       this.setState({
         calc_total: (Number(this.state.value_one) + Number(this.state.value_two))
+      })
+      this.props.dispatch({type: 'CALCULATE', payload: this.state })
+    }
+    else if(this.state.operator === '-'){
+      this.setState({
+        calc_total: (Number(this.state.value_one) - Number(this.state.value_two))
+      })
+    }
+    else if(this.state.operator === '*'){
+      this.setState({
+        calc_total: (Number(this.state.value_one) * Number(this.state.value_two))
+      })
+    }
+    else if(this.state.operator === '/'){
+      this.setState({
+        calc_total: (Number(this.state.value_one) / Number(this.state.value_two))
       })
     }
   }
@@ -60,9 +91,23 @@ class App extends Component {
       )
     }
   }
+
+  toggleDecimal = () => {
+    if(this.state.toggle_decimal_one !== false){
+      this.setState({
+        toggle_decimal_two: true,
+      })
+    }
+    else{
+      this.setState({
+        toggle_decimal_one: true,
+      })
+    }
+  }
   
   render() {
     console.log('value one is:', this.state.value_one, 'value two is:', this.state.value_two, 'total is:', this.state.calc_total)
+    console.log('decimal toggle  one is:', this.state.toggle_decimal_one, 'decimal toggle  two is:', this.state.toggle_decimal_two)
     return (
       <div className="App">
         <div className="calculator-wrapper">
@@ -88,7 +133,7 @@ class App extends Component {
             <button value={'+'} onClick={this.operatorValue}>+</button> 
           </div>
           <div className='calc-row'>
-            <button>.</button>
+            <button onClick={this.toggleDecimal}>.</button>
             <button value={0} onClick={this.inputValue}>0</button>
             <button onClick={this.calculate}>=</button>
             <button value={'-'} onClick={this.operatorValue}>-</button> 
