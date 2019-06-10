@@ -14,10 +14,11 @@ import {takeEvery, put} from 'redux-saga/effects';
 
 //watcher saga to take in dispatches
 function* watcherSaga() {
-    yield takeEvery ('CALCULATE', calculateSaga)
+    yield takeLatest ('POST_CALCULATIONS', postCalculationsSaga)
+    yield takeLatest ('GET_CALCULATIONS', getCalculationsSaga )
 }
 
-function* calculateSaga(action){
+function* postCalculationsSaga(action){
     console.log('in addProjectsSaga');
     try{
         yield axios.post('/calculate', action.payload);
@@ -26,6 +27,19 @@ function* calculateSaga(action){
     catch (error) {
         console.log('ERROR IN POST', error);
         alert(`Sorry! Unable to add calculation. Try again later.`)
+    }
+}
+
+function* getCalculationsSaga(action) {
+    console.log('in projectListSaga')
+    try{
+        const response = yield axios.get('/projects');
+        console.log('Response is', response);
+        yield put({type:'SET_PROJECTS', payload: response.data});
+    }
+    catch (error) {
+        console.log('ERROR IN GET', error);
+        alert(`Sorry! Was unable to get projects. Try again later.`);
     }
 }
 
