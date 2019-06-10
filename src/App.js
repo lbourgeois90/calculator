@@ -13,9 +13,21 @@ class App extends Component {
 
   inputValue= (event) => {
     console.log(event.target.value);
+    if(this.state.value_one !==''){
+      this.setState({
+        value_two: event.target.value,
+      })
+    }
+    else{
+      this.setState({
+        value_one: event.target.value,
+      })
+    }
   }
   
+  
   render() {
+    console.log('value one is:', this.state.value_one, 'value two is:', this.state.value_two)
     return (
       <div className="App">
         <div className="calculator-wrapper">
