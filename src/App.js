@@ -17,9 +17,14 @@ class App extends Component {
   inputValue = (event) => {
     console.log(event.target.value);
     if(this.state.value_one !=='' && this.state.operator !=='' && this.state.value_two !==''  && this.state.toggle_decimal_two !==false){
-      console.log('in else if decimal two');
       this.setState({
         value_two: (this.state.value_two +'.'+ event.target.value)
+      })
+    }
+    else if (this.state.value_one !=='' && this.state.operator !== '' && this.state.value_two !== ''){
+      console.log('in else if value two');
+      this.setState({
+        value_two: (this.state.value_two + event.target.value)
       })
     }
     else if(this.state.value_one !=='' && this.state.operator !==''){
@@ -30,6 +35,11 @@ class App extends Component {
     else if (this.state.value_one !=='' && this.state.toggle_decimal_one !== false){
       this.setState({
         value_one: (this.state.value_one +'.'+ event.target.value)
+      })
+    }
+    else if (this.state.value_one !=='' && this.state.operator === ''){
+      this.setState({
+        value_one: (this.state.value_one + event.target.value)
       })
     }
     else{
