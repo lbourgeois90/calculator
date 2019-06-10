@@ -144,7 +144,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="calculator-wrapper">
-          <div className='calc-row'>
+          <div className='input-row'>
             {this.displayInput()}
           </div>
           <div className='calc-row'>
@@ -171,14 +171,13 @@ class App extends Component {
             <button onClick={this.calculate}>=</button>
             <button value={'-'} onClick={this.operatorValue}>-</button> 
           </div>
-          <div className='calc-row'>
+          <div className='clear-row'>
             <button onClick={this.clearValue}>Clear</button>
           </div>
         </div>
-
-        <hr/>
-        <div>
+        <div className='calculationhistory'>
           <h4>User Calculations</h4>
+
           <table className='table'>
             <tbody>
               {this.props.reduxState.calculationsReducer.map( (calculations) => 

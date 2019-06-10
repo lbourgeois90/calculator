@@ -1,5 +1,19 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-areas:
+  "calculation history"
+}
+
+.calculator-wrapper{
+  grid-area: calculation;
+  margin-left: 10px;
+
+}
+
+.calculationhistory{
+  grid-area: history;
 }
 
 .table{
@@ -12,4 +26,38 @@
 
 h4{
   margin: 0;
+}
+
+.calc-row button{
+  width: 25px;
+  border: 1px black solid;
+  border-right: none;
+}
+
+.calc-row button:last-child{
+  width: 25px;
+  border: 1px black solid;
+}
+
+.calc-row button:focus{
+  color: #ff4977;
+  outline: #ff4977;
+}
+
+.clear-row button{
+  width: 100px;
+  border: 1px black solid;
+}
+
+.clear-row button:focus{
+  color: #ff4977;
+  outline: #ff4977;
+}
+
+
+.input-row{
+  border: 1px black solid;
+  width: 100px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
